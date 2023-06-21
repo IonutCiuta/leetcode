@@ -4,7 +4,6 @@ class Solution {
   public boolean isAnagram(String s, String t) {
       var sCharMap = new HashMap<Character, Integer>();
       var sChars = s.toCharArray();
-      s.length()
 
       for (var c : sChars) {
           if (sCharMap.containsKey(c)) {
