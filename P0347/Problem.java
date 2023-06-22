@@ -10,7 +10,7 @@ class Solution {
       }
 
       var l = new ArrayList<>(top.entrySet());
-      l.sort((e1, e2) -> -Integer.compare(e1.getValue(), e2.getValue()));
+      l.sort((e1, e2) -> e2.getValue() - e1.getValue());
       
       var r = new int[k];
       for (var i = 0; i < k; i++) {
