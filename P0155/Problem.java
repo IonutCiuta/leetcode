@@ -1,4 +1,5 @@
-import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 class MinStack {
   private static class Item {
@@ -10,10 +11,10 @@ class MinStack {
     }
   }
 
-  private LinkedList<Item> items;
+  private Deque<Item> items;
 
   public MinStack() {
-    this.items = new LinkedList<Item>();
+    this.items = new ArrayDeque<Item>();
   }
   
   public void push(int val) {
