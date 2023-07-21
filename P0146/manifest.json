@@ -1,5 +1,5 @@
 {
-  id: "146"
-  name: "LRU Cache",
-  link: "https://leetcode.com/problems/lru-cache"
+  "id": "146",
+  "name": "LRU Cache",
+  "link": "https://leetcode.com/problems/lru-cache"
 }

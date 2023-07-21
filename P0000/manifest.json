@@ -1,5 +1,5 @@
 {
-  id: "<id>",
-  name: "Problem Name",
-  link: "https://leetcode.com/problem"
+  "id": "<id>",
+  "name": "Problem Name",
+  "link": "https://leetcode.com/problem"
 }

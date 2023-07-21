@@ -1,5 +1,5 @@
 {
-  id: "128"
-  name: "Longest Consecutive Sequence",
-  link: "https://leetcode.com/problems/longest-consecutive-sequence"
+  "id": "128",
+  "name": "Longest Consecutive Sequence",
+  "link": "https://leetcode.com/problems/longest-consecutive-sequence"
 }

@@ -1,5 +1,5 @@
 {
-  id: "347"
-  name: "Top K Frequent Elements",
-  link: "https://leetcode.com/problems/top-k-frequent-element"
+  "id": "347",
+  "name": "Top K Frequent Elements",
+  "link": "https://leetcode.com/problems/top-k-frequent-element"
 }

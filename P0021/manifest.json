@@ -1,5 +1,5 @@
 {
-  id: "21"
-  name: "Merge Two Sorted Lists",
-  link: "https://leetcode.com/problems/merge-two-sorted-lists/"
+  "id": "21",
+  "name": "Merge Two Sorted Lists",
+  "link": "https://leetcode.com/problems/merge-two-sorted-lists/"
 }

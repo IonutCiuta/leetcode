@@ -1,5 +1,5 @@
 {
-  id: "206"
-  name: "Reverse Linked List",
-  link: "https://leetcode.com/problems/reverse-linked-list/"
+  "id": "206",
+  "name": "Reverse Linked List",
+  "link": "https://leetcode.com/problems/reverse-linked-list/"
 }
