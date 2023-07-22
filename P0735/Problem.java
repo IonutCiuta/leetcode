@@ -1,64 +1,78 @@
-import java.util.LinkedList;
-
 class Solution {
-  public int[] asteroidCollision(int[] asteroids) {
-      var rocks = new LinkedList<Integer>();
-      for(var i : asteroids) rocks.add(i);
-
+  public int[] asteroidCollision(int[] rocks) {
       int i = 0;
       int j = 1;
+      int rocksLeft = rocks.length;
       
-      while (i < j && j < rocks.size()) {
-          var iRock = rocks.get(i);
-          var jRock = rocks.get(j);
-
-          var bothPositive = iRock >= 0 && jRock >= 0;
-          var bothNegative = iRock < 0 && jRock < 0;
-          
+      while (i < j && j < rocks.length) {            
           // collision can happen only if leftRock is positive and rightRock is negative
-          // \U0001faa8 --> \U0001f4a5 <-- \U0001faa8
+          // 🪨 --> 💥 <-- -🪨
 
-          // Nothing to collide with on the right
-          if (bothNegative) {
+          // Both negative, moving to the right
+          if (rocks[i] < 0 && rocks[j] < 0) {
               i += 2;
               j = i + 1;
               continue;
           }
 
-          // Might find a rock moving left on the right seide
-          if (bothPositive) {
+          // If not on coliision course, move to the rights
+          if (!(rocks[i] > 0 && rocks[j] < 0)) {                
               i = j;
               j += 1;
               continue;
           }
 
-          var collisionCourse = iRock > 0 && jRock < 0;
-          if (!collisionCourse) {                
-              i = j;
-              j += 1;
-              continue;
-          }
+          if (Math.abs(rocks[i]) == Math.abs(rocks[j])) {
+              // If rocks of same size, explode both rocks
+              rocks[i] = 0;
+              rocks[j] = 0;
+              rocksLeft -= 2;
 
-          if (Math.abs(iRock) == Math.abs(jRock)) {
-              // explode both rocks
-              rocks.remove(j);
-              rocks.remove(i);
-              i = Math.max(0, i - 1);
-              j = i + 1;
-          } else {
-              if (Math.abs(iRock) < Math.abs(jRock)) {
-                  rocks.remove(i);
-                  i = Math.max(0, i - 1);
+              // Find next possible collision target on the left side
+              while (i >= 1 && rocks[i] == 0) {
+                  i -= 1;
+              }
+
+              if (i == 0 && rocks[i] == 0) {
+                  // If nothing to collide with on the left, move forward with both pointers
+                  i = j;
                   j = i + 1;
               } else {
-                  rocks.remove(j);
+                  // If there's something to collide with on the left, explore what's on the right
+                  j += 1;
+              }
+          } else {
+              rocksLeft -= 1;
+
+              if (Math.abs(rocks[i]) < Math.abs(rocks[j])) {
+                  // If left side rock is the smaller one, explode it
+                  rocks[i] = 0;
+
+                  // Find next possible collision target on the left side
+                  while (i >= 1 && rocks[i] == 0) {
+                      i -= 1;
+                  }
+                 
+                  // If nothing to collide with on the left, move forward with both pointers
+                  if (i == 0 && rocks[i] == 0) {
+                      i = j;
+                      j = i + 1;
+                  }
+              } else {
+                // If left side rock is the bigger one, explode the right rock and move right pointer
+                  rocks[j] = 0;
+                  j += 1;
               }
           }
       }
 
-      var r = new int[rocks.size()];
-      for (i = 0; i < rocks.size(); i++) {
-          r[i] = rocks.get(i);
+      // Copy non-exploded rocks
+      var r = new int[rocksLeft];
+      for (i = 0, j = 0; i < rocks.length; i++) {
+          if (rocks[i] != 0) {
+              r[j] = rocks[i];
+              j += 1;
+          }
       }
 
       return r;
