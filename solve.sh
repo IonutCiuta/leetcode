@@ -30,6 +30,7 @@ else
 
   echo "Great, setting up problem $1 in folder $PROBLEM"
   cp -r P0000 $PROBLEM
+  git add $PROBLEM/
   ARGS="s/<id>/$1/g"
   sed -i "" $ARGS ./$PROBLEM/manifest.json
   cat ./$PROBLEM/manifest.json
