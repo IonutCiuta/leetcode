@@ -20,15 +20,15 @@ else
   fi
   
   PROBLEM="P$ID"
-  ls $PROBLEM 2> /dev/null
+  ls $PROBLEM >> /dev/null 2>&1
 
   if [ $? -eq 0 ]; then
-    echo "Yeah, you already solved problem $1"
+    echo "⛔️ ⛔️ ⛔️ Yeah, you already solved problem $1. ⛔️ ⛔️ ⛔️"
     cat $PROBLEM/manifest.json
     exit 1;
   fi
 
-  echo "Great, setting up problem $1 in folder $PROBLEM"
+  echo "✅ ✅ ✅ Great, setting up problem $1 in folder $PROBLEM. ✅ ✅ ✅ "
   cp -r P0000 $PROBLEM
   git add $PROBLEM/
   ARGS="s/<id>/$1/g"
