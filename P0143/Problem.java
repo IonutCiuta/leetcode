@@ -1,32 +1,40 @@
-import java.util.ArrayDeque;
-
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
 class Solution {
-  public void reorderList(ListNode head) {
-      var stack = new ArrayDeque<ListNode>();
+    public void reorderList(ListNode head) {
+        var nodes = new Stack<ListNode>();
 
-      var it = head;
-      while (it != null) {
-          stack.push(it);
-          it = it.next;
-      }
+        var p = head;
+        var len = 0;
+        while (p != null) {
+            nodes.push(p);
+            p = p.next;
+            len++;
+        }
 
-      it = head;
-      while (true) {
-          var top = stack.poll();
-          if (it.next == top) {
-              top.next = null;
-              return;
-          }
+        var mid = len / 2;
+        p = head;
 
-          if (it == top) {
-              it.next = null;
-              return;
-          }
+        var i = 0;
+        while (i < mid) {
+            var next = nodes.pop();
 
-          var next = it.next;
-          it.next = top;
-          top.next = next;
-          it = next;
-      }
-  }
+            var copyOfNext = p.next;
+            p.next = next;
+            next.next = copyOfNext;
+            p = copyOfNext;
+
+            i++;
+        }
+
+        p.next = null;
+    }
 }
