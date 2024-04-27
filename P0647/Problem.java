@@ -1,28 +1,35 @@
 class Solution {
     public int countSubstrings(String s) {
         var chars = s.toCharArray();
+        var len = chars.length;
         var r = 0;
 
-        for (int len = 0; len < s.length(); len++) {
-            for (int start = 0; start < s.length() - len; start++) {
-                var end = start + len;
-                if (isPalindrome(chars, start, end)) {
-                    r++;
-                }
+        // start will be our starting poin - the middle of palindromic substring
+        for (int start = 0; start < len; start++) {
+            int left;
+            int right;
+
+            // consider substrings with odd lenghts and
+            // expand outwards from the same point
+            left = start;
+            right = start;
+            while (left >= 0 && right < len && chars[left] == chars[right]) {
+                r++;
+                left--;
+                right++;
+            }
+
+            // consider substrings with even lenghts and
+            // expand outwards from adjacent points
+            left = start;
+            right = start + 1;
+            while (left >= 0 && right < len && chars[left] == chars[right]) {
+                r++;
+                left--;
+                right++;
             }
         }
 
         return r;
-    }
-
-    boolean isPalindrome(char[] chars, int i, int j) {
-        while (i < j) {
-            if (chars[i] != chars[j]) {
-                return false;
-            }
-            i++;
-            j--;
-        }
-        return true;
     }
 }
